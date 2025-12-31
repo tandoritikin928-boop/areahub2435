@@ -1,0 +1,198 @@
+/* ===============================
+   AREA HUB – CORE STYLE
+   紫 / 青 / 黒 / ネオン / 霧
+   =============================== */
+
+:root{
+  --bg:#020617;
+  --bg-soft:rgba(255,255,255,.045);
+  --neon-blue:#93c5fd;
+  --neon-purple:#a78bfa;
+  --neon-cyan:#67e8f9;
+  --text:#e5e7eb;
+  --glass:rgba(2,6,23,.78);
+  --blur:18px;
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Segoe UI",system-ui,sans-serif;
+  overflow-x:hidden;
+}
+
+/* ===== 背景：ダーク波動 ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(30,64,175,.35), transparent 60%),
+    radial-gradient(circle at 75% 75%, rgba(15,23,42,.9), transparent 65%),
+    linear-gradient(135deg,#020617,#020617);
+  animation:bgWave 18s ease-in-out infinite alternate;
+}
+@keyframes bgWave{
+  0%{filter:hue-rotate(0);transform:scale(1)}
+  100%{filter:hue-rotate(10deg);transform:scale(1.06)}
+}
+
+/* ===== ネオン文字 ===== */
+.neon{
+  color:var(--neon-blue);
+  text-shadow:
+    0 0 8px rgba(147,197,253,.6),
+    0 0 22px rgba(167,139,250,.35);
+}
+.neon-purple{
+  color:var(--neon-purple);
+  text-shadow:0 0 18px rgba(167,139,250,.75);
+}
+.neon-cyan{
+  color:var(--neon-cyan);
+  text-shadow:0 0 18px rgba(103,232,249,.75);
+}
+
+/* ===== ナビ ===== */
+nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(var(--blur));
+  background:var(--glass);
+  text-align:center;
+  padding:1rem 0;
+}
+nav a{
+  margin:0 .9rem;
+  font-weight:800;
+  color:var(--neon-blue);
+  text-decoration:none;
+  transition:.3s;
+}
+nav a:hover{
+  color:#fff;
+  text-shadow:0 0 18px var(--neon-blue);
+}
+
+/* ===== カード ===== */
+.card{
+  max-width:860px;
+  margin:3.2rem auto;
+  padding:3rem;
+  border-radius:26px;
+  background:var(--bg-soft);
+  backdrop-filter:blur(var(--blur));
+  box-shadow:0 0 90px rgba(0,0,0,.85);
+}
+
+/* ===== アコーディオン ===== */
+.accordion{
+  border-radius:18px;
+  margin:1.2rem 0;
+  overflow:hidden;
+  background:rgba(255,255,255,.03);
+}
+.accordion-header{
+  cursor:pointer;
+  padding:1.1rem 1.4rem;
+  font-weight:800;
+  color:var(--neon-blue);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.accordion-header:hover{
+  background:rgba(255,255,255,.04);
+}
+.accordion-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s ease, opacity .6s ease;
+  opacity:0;
+  padding:0 1.4rem;
+}
+.accordion.open .accordion-body{
+  opacity:1;
+  max-height:1200px;
+  padding-bottom:1.6rem;
+}
+
+/* ===== 検索 ===== */
+.search{
+  width:100%;
+  padding:.8rem 1rem;
+  border-radius:12px;
+  background:#020617;
+  border:1px solid rgba(147,197,253,.25);
+  color:var(--text);
+  outline:none;
+  margin-bottom:1.6rem;
+}
+.search:focus{
+  box-shadow:0 0 18px rgba(147,197,253,.35);
+}
+
+/* ===== ボタン ===== */
+.btn{
+  display:inline-block;
+  margin-top:1rem;
+  padding:.7rem 1.2rem;
+  border-radius:12px;
+  background:#020617;
+  color:var(--neon-blue);
+  font-weight:800;
+  border:1px solid rgba(147,197,253,.35);
+  cursor:pointer;
+  transition:.3s;
+}
+.btn:hover{
+  box-shadow:0 0 22px rgba(147,197,253,.45);
+}
+
+/* ===== イントロ霧UI ===== */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(20px);
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,.16), transparent 65%);
+  transition:opacity 1.4s ease, filter 1.4s ease;
+}
+#intro.hide{
+  opacity:0;
+  filter:blur(28px);
+  pointer-events:none;
+}
+#introText{
+  font-size:2rem;
+  font-weight:900;
+}
+
+/* ===== コピー通知 ===== */
+.toast{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  background:#020617;
+  color:var(--neon-cyan);
+  padding:.8rem 1.2rem;
+  border-radius:12px;
+  box-shadow:0 0 20px rgba(103,232,249,.45);
+  opacity:0;
+  transform:translateY(10px);
+  transition:.4s;
+}
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
