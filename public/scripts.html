@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area Hub | Scripts</title>
+
+  <!-- CORE STYLE -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CORE JS -->
+  <script src="/assets/js/main.js" defer></script>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<nav>
+  <a href="/index.html">HOME</a>
+  <a href="/executors.html">Executors</a>
+  <a href="/scripts.html">Scripts</a>
+  <a href="/bypass.html">Bypass</a>
+  <a href="/tools.html">Tools</a>
+</nav>
+
+<!-- ================= SCRIPTS ================= -->
+<section class="card">
+
+  <h1 class="text-3xl font-black neon mb-4 text-center">
+    Scripts Library
+  </h1>
+
+  <p class="opacity-80 leading-relaxed mb-6 text-center">
+    研究・検証用途として集約されたスクリプトカテゴリ。<br>
+    構造を理解し、挙動を観察するための情報群。<br>
+    表に出ない仕組みを、静かに読み解く。
+  </p>
+
+  <!-- ===== ScriptBlox ===== -->
+  <div class="text-center mb-10">
+    <a href="https://scriptblox.com/" target="_blank"
+       class="btn neon-cyan">
+      ScriptBlox
+    </a>
+    <p class="text-sm opacity-70 mt-3 leading-relaxed">
+      ScriptBlox は Roblox スクリプトをカテゴリ・人気度・API構造ごとに閲覧できる巨大データベース。<br>
+      loadstring 構文を中心に、RemoteEvent / RemoteFunction の使い方、<br>
+      Character 制御、Humanoid 操作、UI生成などの実装例が豊富に蓄積されている。<br><br>
+      公開スクリプトはそのまま使うためではなく、<br>
+      <span class="neon-purple font-bold">「どの API が、どの順で呼ばれているか」</span>を読むことで、<br>
+      ゲーム側の構造や制御ポイントを理解するための資料として価値がある。
+    </p>
+  </div>
+
+  <!-- ===== CATEGORY ===== -->
+  <div class="accordion">
+    <div class="accordion-header">
+      Autofarm
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <p class="opacity-80 mb-4">
+        ゲーム内の報酬・進行処理を自動化するカテゴリ。<br>
+        ループ構造、待機処理、イベント監視の実装研究向け。
+      </p>
+      <button class="btn" onclick="copyCommunity()">コピー</button>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header">
+      Kill Aura
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <p class="opacity-80 mb-4">
+        周囲のエンティティ検出・距離判定・攻撃トリガーの制御を確認するカテゴリ。<br>
+        判定条件や最適化の考え方を学ぶための研究用。
+      </p>
+      <button class="btn" onclick="copyCommunity()">コピー</button>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header">
+      Utility
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <p class="opacity-80 mb-4">
+        UI補助、ステータス表示、操作簡略化などの便利系スクリプト。<br>
+        APIの呼び方や安全なフック方法の理解に向いている。
+      </p>
+      <button class="btn" onclick="copyCommunity()">コピー</button>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header">
+      Fly / Movement
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <p class="opacity-80 mb-4">
+        Character の座標操作、BodyVelocity / CFrame 制御の研究カテゴリ。<br>
+        移動制御ロジックの理解に使われる。
+      </p>
+      <button class="btn" onclick="copyCommunity()">コピー</button>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header">
+      AFK / Idle
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <p class="opacity-80 mb-4">
+        ユーザー状態監視、一定間隔での入力送信など、<br>
+        ゲーム内アイドル検知回避の仕組みを学ぶカテゴリ。
+      </p>
+      <button class="btn" onclick="copyCommunity()">コピー</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="text-center text-xs opacity-60 py-10">
+  © Area Hub
+</footer>
+
+</body>
+</html>
