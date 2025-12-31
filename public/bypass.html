@@ -1,101 +1,88 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Area Hub | Bypass</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area Hub | Bypass</title>
 
-<style>
-/* ===== Base / Background ===== */
-body{
-  margin:0; min-height:100vh; color:#e5e7eb;
-  font-family:system-ui,"Segoe UI",sans-serif; overflow-x:hidden;
-}
-body::before{
-  content:""; position:fixed; inset:0; z-index:-2;
-  background:
-    radial-gradient(circle at 28% 22%, rgba(124,58,237,.35), transparent 55%),
-    radial-gradient(circle at 72% 72%, rgba(37,99,235,.25), transparent 60%),
-    linear-gradient(135deg,#020617,#020617,#020617);
-  animation: drift 22s ease-in-out infinite alternate;
-}
-@keyframes drift{
-  to{filter:hue-rotate(10deg); transform:scale(1.06)}
-}
+  <!-- CORE STYLE -->
+  <link rel="stylesheet" href="/assets/css/style.css">
 
-/* ===== Glow ===== */
-@keyframes glow{
-  0%,100%{text-shadow:0 0 10px rgba(139,92,246,.45)}
-  50%{text-shadow:0 0 30px rgba(139,92,246,.95)}
-}
-.glow{animation:glow 3s infinite}
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-/* ===== Nav ===== */
-nav{
-  position:sticky; top:0; z-index:40;
-  backdrop-filter:blur(16px);
-  background:rgba(2,6,23,.75)
-}
-nav a{margin:0 .9rem; font-weight:800; color:#93c5fd}
-
-/* ===== Card ===== */
-.card{
-  max-width:980px; margin:2.6rem auto; padding:2.6rem;
-  border-radius:26px; background:rgba(255,255,255,.045);
-  backdrop-filter:blur(18px);
-  box-shadow:0 0 90px rgba(0,0,0,.85)
-}
-
-/* ===== Block ===== */
-.block{
-  border:1px solid rgba(139,92,246,.22);
-  border-radius:22px; padding:1.9rem;
-  background:rgba(2,6,23,.55)
-}
-.block:hover{box-shadow:0 0 34px rgba(139,92,246,.28)}
-.url{color:#a78bfa; text-decoration:underline}
-.desc{margin-top:1.2rem; line-height:1.95; opacity:.93}
-</style>
+  <!-- CORE JS -->
+  <script src="/assets/js/main.js" defer></script>
 </head>
 
 <body>
-<nav class="text-center py-4">
+
+<!-- ================= NAV ================= -->
+<nav>
   <a href="/index.html">HOME</a>
   <a href="/executors.html">Executors</a>
+  <a href="/scripts.html">Scripts</a>
   <a href="/bypass.html">Bypass</a>
   <a href="/tools.html">Tools</a>
 </nav>
 
+<!-- ================= BYPASS ================= -->
 <section class="card">
-  <h1 class="text-4xl font-black glow mb-4">Bypass</h1>
-  <p class="opacity-80 mb-7">
-    本ページでは、Bypassという概念を<strong>仕組み・注意点・研究視点</strong>から整理する。
-    実装や具体的手法ではなく、構造理解を目的とした情報のみを掲載している。
+
+  <h1 class="text-3xl font-black neon mb-4 text-center">
+    Bypass
+  </h1>
+
+  <p class="opacity-80 leading-relaxed mb-8 text-center">
+    検出・制限・保護機構の構造を理解するための研究セクション。<br>
+    実用ではなく <span class="neon-purple font-bold">仕組みの解析</span> を目的とした情報をまとめている。
   </p>
 
-  <div class="block">
-    <h2 class="text-2xl font-extrabold glow mb-2">IZEN / ZEN 系概念</h2>
-    <a class="url" href="https://izen.lol/" target="_blank">🔗 公式URL</a>
+  <!-- ===== IZEN ===== -->
+  <div class="accordion">
+    <div class="accordion-header">
+      🔗 IZEN / ZEN 系 Bypass
+      <span>＋</span>
+    </div>
 
-    <div class="desc">
-      Bypassとは、システム側で想定されている検知・制限の仕組みを理解し、その挙動差や判定条件を
-      研究対象として観測する行為を指す総称である。特定の方法論を指す言葉ではなく、検知ロジックが
-      どの層で、どのタイミングで、どの情報を基準に動作しているかを把握するための概念的枠組みと
-      捉える方が正確である。  
-      IZEN / ZEN 系と呼ばれるものは、クライアント挙動・通信構造・環境差分といった複数要素が
-      組み合わさることで成立している場合が多く、単一要因での理解は困難である。
+    <div class="accordion-body">
+      <a href="https://izen.lol/" target="_blank"
+         class="neon-cyan font-bold">
+        https://izen.lol/
+      </a>
 
-      重要なのは、成功率や一時的な有効性ではなく、なぜ特定条件下で挙動が変化するのかという
-      原因分析の視点である。OSやバージョン、実行環境の違いによって結果が変わることも多く、
-      同一条件の再現が難しい点は常に意識する必要がある。  
-      また、仕様変更や更新により前提条件が崩れることは珍しくなく、過去の情報が通用しなくなる
-      ケースも多い。そのため、情報は固定的なものではなく、常に変化するものとして扱う姿勢が重要となる。
-
-      Area Hubでは、Bypassを「使うための知識」ではなく、「構造を理解するための研究対象」として整理し、
-      安易な期待や誤解を避けるための注意喚起も含めて掲載している。
+      <p class="opacity-80 mt-4 leading-relaxed">
+        IZEN / ZEN 系 Bypass は、Roblox 側の検出ロジックや制御層を
+        「完全に無効化する」のではなく、
+        <span class="neon-purple font-bold">検出条件そのものを成立させない</span>
+        という考え方を基盤としている。
+        主に API 呼び出し順序、実行タイミング、メモリ上の状態遷移を
+        ずらすことで、通常想定されている検出フローから外れる挙動を作る。
+        これにより、特定の Executor やスクリプトが
+        直接フラグを立てられることなく動作しているように見せる。
+        研究用途では、どの処理段階で監視が行われているか、
+        どの条件がトリガーとして使われているかを観察することで、
+        Roblox クライアント側の防御構造を理解する手がかりになる。
+        ただし、仕様変更の影響を強く受けるため、
+        一時的に成立しても永続性はなく、
+        継続的な検証と再解析が前提となる。
+      </p>
     </div>
   </div>
+
+  <!-- ===== NOTE ===== -->
+  <div class="mt-10 opacity-70 text-sm leading-relaxed">
+    ※ このページの情報は研究・構造理解を目的としたものです。<br>
+    実際の利用可否や安全性を保証するものではありません。<br>
+    環境差・バージョン差により挙動は大きく変化します。
+  </div>
+
 </section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="text-center text-xs opacity-60 py-10">
+  © Area Hub
+</footer>
+
 </body>
 </html>
