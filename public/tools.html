@@ -1,124 +1,123 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Area Hub | Tools</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area Hub | Tools</title>
 
-<style>
-/* ===== Base / Background ===== */
-body{
-  margin:0; min-height:100vh; color:#e5e7eb;
-  font-family:system-ui,"Segoe UI",sans-serif; overflow-x:hidden;
-}
-body::before{
-  content:""; position:fixed; inset:0; z-index:-2;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(124,58,237,.35), transparent 55%),
-    radial-gradient(circle at 70% 70%, rgba(37,99,235,.25), transparent 60%),
-    linear-gradient(135deg,#020617,#020617,#020617);
-  animation: wave 20s ease-in-out infinite alternate;
-}
-@keyframes wave{to{filter:hue-rotate(12deg); transform:scale(1.06)}}
+  <!-- CORE STYLE -->
+  <link rel="stylesheet" href="/assets/css/style.css">
 
-/* ===== Glow ===== */
-@keyframes glow{
-  0%,100%{text-shadow:0 0 10px rgba(139,92,246,.45)}
-  50%{text-shadow:0 0 30px rgba(139,92,246,.95)}
-}
-.glow{animation:glow 3s infinite}
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-/* ===== Nav ===== */
-nav{
-  position:sticky; top:0; z-index:40;
-  backdrop-filter:blur(16px);
-  background:rgba(2,6,23,.75)
-}
-nav a{margin:0 .9rem; font-weight:800; color:#93c5fd}
-
-/* ===== Card ===== */
-.card{
-  max-width:980px; margin:2.6rem auto; padding:2.6rem;
-  border-radius:26px; background:rgba(255,255,255,.045);
-  backdrop-filter:blur(18px);
-  box-shadow:0 0 90px rgba(0,0,0,.85)
-}
-
-/* ===== Tool Block ===== */
-.tool{
-  border:1px solid rgba(139,92,246,.2);
-  border-radius:20px; padding:1.7rem; margin-bottom:1.6rem;
-  background:rgba(2,6,23,.55)
-}
-.tool:hover{box-shadow:0 0 32px rgba(139,92,246,.28)}
-.tool h2{font-size:1.6rem; font-weight:900}
-.url{color:#a78bfa; text-decoration:underline}
-.desc{margin-top:1rem; line-height:1.9; opacity:.93}
-</style>
+  <!-- CORE JS -->
+  <script src="/assets/js/main.js" defer></script>
 </head>
 
 <body>
-<nav class="text-center py-4">
+
+<!-- ================= NAV ================= -->
+<nav>
   <a href="/index.html">HOME</a>
   <a href="/executors.html">Executors</a>
+  <a href="/scripts.html">Scripts</a>
   <a href="/bypass.html">Bypass</a>
   <a href="/tools.html">Tools</a>
 </nav>
 
+<!-- ================= TOOLS ================= -->
 <section class="card">
-  <h1 class="text-4xl font-black glow mb-4">Tools</h1>
-  <p class="opacity-80 mb-7">
-    モバイル環境での検証・管理を行うための補助ツール群。
-    署名・インポート・管理の流れを理解することが重要となる。
+
+  <h1 class="text-3xl font-black neon mb-4 text-center">
+    Tools
+  </h1>
+
+  <p class="opacity-80 leading-relaxed mb-8 text-center">
+    モバイル環境における検証・研究を支援する補助ツール群。<br>
+    実行そのものではなく、<span class="neon-purple font-bold">環境構造や仕組みの理解</span>を目的として掲載。
   </p>
 
-  <!-- e-sign -->
-  <div class="tool">
-    <h2 class="glow">E-sign</h2>
-    <a class="url" href="https://techybuff.com/esign/" target="_blank">
-      🔗 esign サイト
-    </a>
-    <div class="desc">
-      E-signは、iOS環境においてIPAファイルを署名し、端末へ導入するためのツール。
-      Apple IDを用いた署名方式を採用しており、脱獄を必要としない点が特徴。
-      インストール後はアプリ内からIPAを読み込み、証明書を選択して署名を実行する。
-      初回はデバイス側で「信頼」の設定が必要となるが、一度設定すれば以後は安定して利用可能。
-      研究用途では、署名方式や有効期限の挙動確認、環境差によるインストール可否の検証に用いられる。
+  <!-- ===== E-SIGN ===== -->
+  <div class="accordion">
+    <div class="accordion-header">
+      🔗 e-sign
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <a href="https://techybuff.com/esign/" target="_blank"
+         class="neon-cyan font-bold">
+        https://techybuff.com/esign/
+      </a>
+      <p class="opacity-80 mt-4 leading-relaxed">
+        e-sign は、iOS 環境におけるアプリ署名という仕組みを理解するための補助ツール。
+        アプリがどのように署名情報を持ち、どの段階で検証されるのかを
+        観察するための参考として利用されることが多い。
+        署名・証明書・有効期限といった概念を知ることで、
+        モバイル環境特有の制限構造や配布形式への理解が深まる。
+        研究用途では、公式配布と非公式配布の違いを比較するための資料として扱われる。
+      </p>
     </div>
   </div>
 
-  <!-- k-esign -->
-  <div class="tool">
-    <h2 class="glow">K-sign</h2>
-    <a class="url" href="https://khoindvn.io.vn/" target="_blank">
-      🔗 k-esign サイト
-    </a>
-    <div class="desc">
-      K-signはE-signと同系統の署名ツールで、比較的シンプルなUIが特徴。
-      署名プロセスは直感的で、IPAファイルの読み込みからインストールまでの導線が短い。
-      設定項目が少ないため、環境検証や挙動確認を素早く行いたい場合に適している。
-      複数ツールを併用することで、署名成功率や端末依存の差分を比較する研究が可能となる。
+  <!-- ===== K-ESIGN ===== -->
+  <div class="accordion">
+    <div class="accordion-header">
+      🔗 k-esign
+      <span>＋</span>
+    </div>
+    <div class="accordion-body">
+      <a href="https://khoindvn.io.vn/" target="_blank"
+         class="neon-cyan font-bold">
+        https://khoindvn.io.vn/
+      </a>
+      <p class="opacity-80 mt-4 leading-relaxed">
+        k-esign は e-sign と同様に、アプリ署名という工程を
+        技術的に理解するためのツール群を提供している。
+        異なる実装やUIを比較することで、
+        同じ仕組みでも設計思想によって挙動や制限が変わる点を学べる。
+        複数ツールを並べて観察することで、
+        iOS セキュリティモデルの共通点と差異が見えてくる。
+      </p>
     </div>
   </div>
 
-  <!-- Delta IPA -->
-  <div class="tool">
-    <h2 class="glow">Delta IPA</h2>
-    <a class="url"
-      href="https://www.mediafire.com/file/i4p17hpjm8q81jc/Delta-2.701.ipa/file"
-      target="_blank">
-      🔗 Delta IPA ダウンロード
-    </a>
-    <div class="desc">
-      DeltaのIPAファイルは、E-signやK-signを使用して端末へ導入する。
-      ダウンロード後、署名ツールを起動し「ファイルからインポート」を選択。
-      IPAを指定し署名を実行することで、端末へインストールされる。
-      インストール後は、設定アプリ内で証明書を信頼する工程を忘れずに行う必要がある。
-      この一連の流れを理解しておくことで、環境変更時にもスムーズな再導入が可能となる。
+  <!-- ===== DELTA IPA ===== -->
+  <div class="accordion">
+    <div class="accordion-header">
+      🔗 Delta ipa
+      <span>＋</span>
     </div>
+    <div class="accordion-body">
+      <a href="https://www.mediafire.com/file/i4p17hpjm8q81jc/Delta-2.701.ipa/file"
+         target="_blank"
+         class="neon-cyan font-bold">
+        Delta-2.701.ipa
+      </a>
+      <p class="opacity-80 mt-4 leading-relaxed">
+        ipa ファイルは、iOS アプリの実体となるパッケージ形式。
+        内部には実行ファイル、リソース、署名情報が含まれており、
+        解析視点ではアプリ構造を学ぶための教材として扱われる。
+        どのようなファイル構成を持ち、どこで検証が行われるかを
+        知ることは、モバイル環境理解の基礎となる。
+        本ページでは形式や構造を知るための参考情報として掲載している。
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== NOTE ===== -->
+  <div class="mt-10 opacity-70 text-sm leading-relaxed">
+    ※ このページの情報は技術的理解・研究を目的とした解説です。<br>
+    特定の利用方法や動作を保証・推奨するものではありません。<br>
+    環境・バージョン・規約により挙動は異なります。
   </div>
 
 </section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="text-center text-xs opacity-60 py-10">
+  © Area Hub
+</footer>
+
 </body>
 </html>
