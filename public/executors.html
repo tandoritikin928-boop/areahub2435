@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Area Hub | Executors</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* ===== Base / Background ===== */
+body{
+  margin:0; min-height:100vh; color:#e5e7eb;
+  font-family:system-ui,"Segoe UI",sans-serif; overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:-2;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(124,58,237,.35), transparent 55%),
+    radial-gradient(circle at 70% 70%, rgba(29,78,216,.25), transparent 60%),
+    linear-gradient(135deg,#020617,#020617,#020617);
+  animation: hue 18s ease-in-out infinite alternate;
+}
+@keyframes hue{to{filter:hue-rotate(12deg); transform:scale(1.05)}}
+
+/* ===== Glow ===== */
+@keyframes glow{
+  0%,100%{text-shadow:0 0 10px rgba(139,92,246,.45)}
+  50%{text-shadow:0 0 28px rgba(139,92,246,.9)}
+}
+.glow{animation:glow 3s infinite}
+
+/* ===== Nav ===== */
+nav{
+  position:sticky; top:0; z-index:40;
+  backdrop-filter:blur(16px);
+  background:rgba(2,6,23,.75)
+}
+nav a{margin:0 .9rem; font-weight:800; color:#93c5fd}
+
+/* ===== Card ===== */
+.card{
+  max-width:980px; margin:2.5rem auto; padding:2.5rem;
+  border-radius:24px; background:rgba(255,255,255,.045);
+  backdrop-filter:blur(18px);
+  box-shadow:0 0 90px rgba(0,0,0,.85)
+}
+
+/* ===== Executor Item ===== */
+.exec{
+  border:1px solid rgba(139,92,246,.18);
+  border-radius:18px; padding:1.6rem; margin-bottom:1.4rem;
+  background:rgba(2,6,23,.55)
+}
+.exec:hover{box-shadow:0 0 28px rgba(139,92,246,.25)}
+.exec-header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; cursor:pointer
+}
+.badge{
+  font-size:.75rem; padding:.2rem .6rem; border-radius:999px;
+  border:1px solid rgba(96,165,250,.35); color:#93c5fd
+}
+.tag-latest{border-color:rgba(34,197,94,.5); color:#86efac}
+.url{color:#a78bfa; text-decoration:underline}
+.desc{
+  display:none; margin-top:1rem; line-height:1.9; opacity:.92
+}
+.exec.open .desc{display:block; animation:fade .6s ease}
+@keyframes fade{
+  from{opacity:0; filter:blur(6px)}
+  to{opacity:1; filter:blur(0)}
+}
+</style>
+</head>
+
+<body>
+<nav class="text-center py-4">
+  <a href="/index.html">HOME</a>
+  <a href="/executors.html">Executors</a>
+  <a href="/bypass.html">Bypass</a>
+  <a href="/tools.html">Tools</a>
+</nav>
+
+<section class="card">
+  <h1 class="text-4xl font-black glow mb-3">Executors</h1>
+  <p class="opacity-80 mb-6">
+    PC / Mobile 環境別に、安定性・更新頻度・UI完成度を基準として整理。
+    クリックで詳細が展開され、静かに濃い情報へ入っていく設計。
+  </p>
+
+  <!-- Xeno -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Xeno</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">PC専用</span><span class="badge">UNC 86%</span>
+        </div>
+      </div>
+      <a class="url" href="https://www.xeno.onl/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      XenoはPC向けに設計されたExecutorで、軽量なUIと比較的安定した挙動が特徴。
+      更新頻度が一定で、環境前提を満たした際の再現性が高い。
+      研究用途ではUIレスポンスや挙動差分の観測に向いており、
+      必要最低限の設計が理解のしやすさにつながっている。
+    </div>
+  </div>
+
+  <!-- Potassium -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Potassium</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">PC専用</span><span class="badge">有料</span>
+        </div>
+      </div>
+      <a class="url" href="https://rscripts.net/executor/potassium" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Potassiumは有料モデルにより、検証工程とサポートを重視。
+      UIは整理され、設定差分の比較がしやすい。
+      長期検証や安定性評価に向く構成で、研究視点での再現性が高い。
+    </div>
+  </div>
+
+  <!-- Solara -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Solara</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">PC専用</span>
+        </div>
+      </div>
+      <a class="url" href="https://getsolara.dev/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Solaraは導線の短さと拡張性のバランスが良い。
+      更新情報が明確で、仕様変更時の判断がしやすい点が利点。
+      UIフローの比較研究に適している。
+    </div>
+  </div>
+
+  <!-- Bunni -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Bunni</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">PC専用</span>
+        </div>
+      </div>
+      <a class="url" href="https://bunniexecutor.com/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Bunniは親しみやすいUIと軽快な操作感が特徴。
+      初期設定の手間が少なく、短時間の挙動確認に向く。
+    </div>
+  </div>
+
+  <!-- Volcano -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Volcano</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">PC専用</span><span class="badge">有料</span>
+        </div>
+      </div>
+      <a class="url" href="https://volcanoexecutor.com/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Volcanoは高負荷時の安定性を重視。
+      有料モデルにより検証プロセスが整備され、長時間観測に向く。
+    </div>
+  </div>
+
+  <!-- Swift -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Swift</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">PC専用</span>
+        </div>
+      </div>
+      <a class="url" href="https://swiftexecutor.com/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Swiftは起動速度とレスポンス重視。
+      軽量環境での比較検証に向く。
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Delta</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">iOS / Android</span><span class="badge">UNC 30%</span>
+        </div>
+      </div>
+      <a class="url" href="https://delta-executor.com/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Deltaはモバイル最適化設計。
+      端末・OS差分を意識した検証が必要。
+    </div>
+  </div>
+
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Codex</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">iOS / Android</span>
+        </div>
+      </div>
+      <a class="url" href="https://codex.lol/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Codexは情報共有が活発で、比較研究に向く。
+    </div>
+  </div>
+
+  <div class="exec" onclick="toggle(this)">
+    <div class="exec-header">
+      <div>
+        <h2 class="text-2xl font-extrabold glow">Arceus X</h2>
+        <div class="mt-1 flex gap-2 flex-wrap">
+          <span class="badge">iOS / Android</span><span class="badge tag-latest">最新</span>
+        </div>
+      </div>
+      <a class="url" href="https://arceusx.com/" target="_blank">公式URL</a>
+    </div>
+    <div class="desc">
+      Arceus Xは更新情報が多く、比較対象としての価値が高い。
+      多機能UIの挙動差分把握が重要。
+    </div>
+  </div>
+</section>
+
+<script>
+function toggle(el){ el.classList.toggle('open'); }
+</script>
+</body>
+</html>
